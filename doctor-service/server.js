@@ -12,7 +12,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Fictional doctor records
+// Fictional doctor records (20 records)
 let doctors = [
   {
     id: "D001",
@@ -37,6 +37,102 @@ let doctors = [
     name: "Dr. Rajesh Sharma",
     specialization: "Orthopedics",
     availability: "Monday - Thursday, 09:00 - 17:00"
+  },
+  {
+    id: "D005",
+    name: "Dr. Benjamin Koh",
+    specialization: "Dermatology",
+    availability: "Wednesday - Friday, 10:00 - 17:00"
+  },
+  {
+    id: "D006",
+    name: "Dr. Jessica Lim",
+    specialization: "Ophthalmology",
+    availability: "Monday - Friday, 08:30 - 16:30"
+  },
+  {
+    id: "D007",
+    name: "Dr. Michael Chen",
+    specialization: "General Surgery",
+    availability: "Tuesday - Thursday, 09:00 - 17:00"
+  },
+  {
+    id: "D008",
+    name: "Dr. Priya Nair",
+    specialization: "Gynecology & Obstetrics",
+    availability: "Monday - Thursday, 09:30 - 16:30"
+  },
+  {
+    id: "D009",
+    name: "Dr. Robert Taylor",
+    specialization: "Psychiatry",
+    availability: "Wednesday - Saturday, 11:00 - 19:00"
+  },
+  {
+    id: "D010",
+    name: "Dr. Amanda Teo",
+    specialization: "Endocrinology",
+    availability: "Monday - Wednesday, 08:00 - 15:00"
+  },
+  {
+    id: "D011",
+    name: "Dr. Kenneth Sim",
+    specialization: "Pulmonology",
+    availability: "Tuesday - Friday, 09:00 - 16:00"
+  },
+  {
+    id: "D012",
+    name: "Dr. Michelle Gomez",
+    specialization: "Oncology",
+    availability: "Monday - Thursday, 09:00 - 17:30"
+  },
+  {
+    id: "D013",
+    name: "Dr. Daniel Fong",
+    specialization: "Gastroenterology",
+    availability: "Wednesday - Saturday, 08:30 - 16:00"
+  },
+  {
+    id: "D014",
+    name: "Dr. Rachel Chia",
+    specialization: "Nephrology",
+    availability: "Tuesday - Friday, 09:30 - 17:00"
+  },
+  {
+    id: "D015",
+    name: "Dr. Victor Seah",
+    specialization: "Otolaryngology (ENT)",
+    availability: "Monday - Wednesday, 10:00 - 18:00"
+  },
+  {
+    id: "D016",
+    name: "Dr. Stephanie Neo",
+    specialization: "Rheumatology",
+    availability: "Thursday - Saturday, 09:00 - 15:00"
+  },
+  {
+    id: "D017",
+    name: "Dr. Andrew Kwan",
+    specialization: "Urology",
+    availability: "Monday - Thursday, 08:30 - 16:30"
+  },
+  {
+    id: "D018",
+    name: "Dr. Beatrice Low",
+    specialization: "Hematology",
+    availability: "Tuesday - Friday, 10:00 - 17:00"
+  },
+  {
+    id: "D019",
+    name: "Dr. Jonathan Yeo",
+    specialization: "Anesthesiology",
+    availability: "Monday - Friday, 07:30 - 15:30"
+  },
+  {
+    id: "D020",
+    name: "Dr. Kimberly Chua",
+    specialization: "Emergency Medicine",
+    availability: "Rotating Shifts, 24/7 On-Call"
   }
 ];
 

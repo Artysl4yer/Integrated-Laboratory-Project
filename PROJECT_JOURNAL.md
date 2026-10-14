@@ -42,7 +42,7 @@ GET http://localhost:3001/patients
 ```json
 {
   "success": true,
-  "count": 4,
+  "count": 20,
   "data": [
     {
       "id": "P001",
@@ -83,6 +83,16 @@ GET http://localhost:3001/patients
         "email": "liam.patel@example.com",
         "address": "10 Marina Boulevard, #20-03, Singapore 018983"
       }
+    },
+    {
+      "id": "P005",
+      "name": "Klarenz Lark",
+      "age": 24,
+      "contact": {
+        "phone": "+65 9286 8498",
+        "email": "klarenz.lark@example.com",
+        "address": "15 Bedok North St 1, #09-12, Singapore 469661"
+      }
     }
   ]
 }
@@ -106,7 +116,7 @@ GET http://localhost:3002/doctors
 ```json
 {
   "success": true,
-  "count": 4,
+  "count": 20,
   "data": [
     {
       "id": "D001",
@@ -131,6 +141,12 @@ GET http://localhost:3002/doctors
       "name": "Dr. Rajesh Sharma",
       "specialization": "Orthopedics",
       "availability": "Monday - Thursday, 09:00 - 17:00"
+    },
+    {
+      "id": "D005",
+      "name": "Dr. Benjamin Koh",
+      "specialization": "Dermatology",
+      "availability": "Wednesday - Friday, 10:00 - 17:00"
     }
   ]
 }

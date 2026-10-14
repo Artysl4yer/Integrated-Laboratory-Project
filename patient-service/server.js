@@ -12,7 +12,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Fictional patient records
+// Fictional patient records (20 records)
 let patients = [
   {
     id: "P001",
@@ -52,6 +52,166 @@ let patients = [
       phone: "+65 8456 7890",
       email: "liam.patel@example.com",
       address: "10 Marina Boulevard, #20-03, Singapore 018983"
+    }
+  },
+  {
+    id: "P005",
+    name: "Klarenz Lark",
+    age: 24,
+    contact: {
+      phone: "+65 9286 8498",
+      email: "klarenz.lark@example.com",
+      address: "15 Bedok North St 1, #09-12, Singapore 469661"
+    }
+  },
+  {
+    id: "P006",
+    name: "Chloe Lim",
+    age: 29,
+    contact: {
+      phone: "+65 9112 2334",
+      email: "chloe.lim@example.com",
+      address: "78 Ang Mo Kio Ave 3, #04-18, Singapore 569933"
+    }
+  },
+  {
+    id: "P007",
+    name: "Noah Fernandez",
+    age: 38,
+    contact: {
+      phone: "+65 8223 3445",
+      email: "noah.fernandez@example.com",
+      address: "22 Clementi Ave 3, #11-05, Singapore 129905"
+    }
+  },
+  {
+    id: "P008",
+    name: "Emily Zhang",
+    age: 45,
+    contact: {
+      phone: "+65 9334 4556",
+      email: "emily.zhang@example.com",
+      address: "14 Bishan St 13, #07-29, Singapore 579790"
+    }
+  },
+  {
+    id: "P009",
+    name: "Daniel Kumar",
+    age: 53,
+    contact: {
+      phone: "+65 8445 5667",
+      email: "daniel.kumar@example.com",
+      address: "55 Serangoon Central, #14-02, Singapore 556083"
+    }
+  },
+  {
+    id: "P010",
+    name: "Grace Ng",
+    age: 31,
+    contact: {
+      phone: "+65 9556 6778",
+      email: "grace.ng@example.com",
+      address: "33 Woodlands Ave 6, #03-45, Singapore 738991"
+    }
+  },
+  {
+    id: "P011",
+    name: "Lucas Wong",
+    age: 26,
+    contact: {
+      phone: "+65 8667 7889",
+      email: "lucas.wong@example.com",
+      address: "60 Punggol Central, #15-30, Singapore 828761"
+    }
+  },
+  {
+    id: "P012",
+    name: "Mia Santos",
+    age: 40,
+    contact: {
+      phone: "+65 9778 8990",
+      email: "mia.santos@example.com",
+      address: "18 Bukit Batok Central, #08-11, Singapore 659958"
+    }
+  },
+  {
+    id: "P013",
+    name: "Ethan Low",
+    age: 33,
+    contact: {
+      phone: "+65 8889 9001",
+      email: "ethan.low@example.com",
+      address: "9 Sengkang Square, #10-15, Singapore 545078"
+    }
+  },
+  {
+    id: "P014",
+    name: "Olivia Hassan",
+    age: 48,
+    contact: {
+      phone: "+65 9990 0112",
+      email: "olivia.hassan@example.com",
+      address: "24 Pasir Ris Drive 1, #06-08, Singapore 519525"
+    }
+  },
+  {
+    id: "P015",
+    name: "James Teo",
+    age: 59,
+    contact: {
+      phone: "+65 8101 1223",
+      email: "james.teo@example.com",
+      address: "70 Toa Payoh Lorong 4, #12-33, Singapore 310070"
+    }
+  },
+  {
+    id: "P016",
+    name: "Hannah Lee",
+    age: 22,
+    contact: {
+      phone: "+65 9212 2334",
+      email: "hannah.lee@example.com",
+      address: "101 Yishun Ave 5, #02-14, Singapore 760101"
+    }
+  },
+  {
+    id: "P017",
+    name: "Benjamin Goh",
+    age: 36,
+    contact: {
+      phone: "+65 8323 3445",
+      email: "benjamin.goh@example.com",
+      address: "40 Choa Chu Kang Loop, #09-20, Singapore 689682"
+    }
+  },
+  {
+    id: "P018",
+    name: "Sarah Alatas",
+    age: 27,
+    contact: {
+      phone: "+65 9434 4556",
+      email: "sarah.alatas@example.com",
+      address: "12 Queenstown Road, #16-04, Singapore 148955"
+    }
+  },
+  {
+    id: "P019",
+    name: "Ryan Tay",
+    age: 44,
+    contact: {
+      phone: "+65 8545 5667",
+      email: "ryan.tay@example.com",
+      address: "85 Marine Parade Central, #05-19, Singapore 440085"
+    }
+  },
+  {
+    id: "P020",
+    name: "Isabella Ho",
+    age: 39,
+    contact: {
+      phone: "+65 9656 6778",
+      email: "isabella.ho@example.com",
+      address: "20 Geylang East Ave 1, #07-03, Singapore 389782"
     }
   }
 ];
