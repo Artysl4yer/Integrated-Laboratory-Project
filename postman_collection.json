@@ -1,0 +1,150 @@
+{
+  "info": {
+    "_postman_id": "c8a4f61e-1234-4567-89ab-cdef01234567",
+    "name": "Integrated Laboratory Project - Week 1 (Group 1)",
+    "description": "Postman collection for Patient Service (port 3001) and Doctor Service (port 3002).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Patient Service",
+      "item": [
+        {
+          "name": "GET /patients (All Patients)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/patients",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["patients"]
+            }
+          }
+        },
+        {
+          "name": "GET /patients/:id (Patient by ID)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/patients/P001",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["patients", "P001"]
+            }
+          }
+        },
+        {
+          "name": "POST /patients (Create Patient)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Elena Rostova\",\n  \"age\": 31,\n  \"contact\": {\n    \"phone\": \"+65 9876 5432\",\n    \"email\": \"elena.rostova@example.com\",\n    \"address\": \"50 Robinson Rd, Singapore 068882\"\n  }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/patients",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["patients"]
+            }
+          }
+        },
+        {
+          "name": "GET /health (Patient Service Health)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["health"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Doctor Service",
+      "item": [
+        {
+          "name": "GET /doctors (All Doctors)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3002/doctors",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["doctors"]
+            }
+          }
+        },
+        {
+          "name": "GET /doctors/:id (Doctor by ID)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3002/doctors/D001",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["doctors", "D001"]
+            }
+          }
+        },
+        {
+          "name": "POST /doctors (Create Doctor)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dr. Benjamin Koh\",\n  \"specialization\": \"Dermatology\",\n  \"availability\": \"Wednesday - Friday, 10:00 - 17:00\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3002/doctors",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["doctors"]
+            }
+          }
+        },
+        {
+          "name": "GET /health (Doctor Service Health)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3002/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["health"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
