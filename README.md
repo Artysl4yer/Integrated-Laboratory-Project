@@ -1,2 +1,8 @@
 # Integrated Laboratory Project
-Laboratory rules • Each group develops one continuous project for four weeks. • Add two microservices per week, reaching eight services by Week 4. • Use Node.js, Express, Docker, Amazon ECR, Amazon ECS/Fargate, and Postman. • Retain all previous services when adding new ones. • Use fictional test data only. • Test locally before deploying to AWS. • Record API results, deployment evidence, errors, and solutions in a project journal. • Use the AWS Region ap-southeast-1 (Singapore) consistently, unless the instructor specifies otherwise
+Laboratory rules • 
+Each group develops one continuous project for four weeks. 
+• Add two microservices per week, reaching eight services by Week 4.
+• Use Node.js, Express, Docker, Amazon ECR, Amazon ECS/Fargate, and Postman. 
+• Retain all previous services when adding new ones. • Use fictional test data only.
+• Test locally before deploying to AWS. • Record API results, deployment evidence, errors, and solutions in a project journal. 
+• Use the AWS Region ap-southeast-1 (Singapore) consistently, unless the instructor specifies otherwise
