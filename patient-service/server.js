@@ -226,6 +226,8 @@ app.get('/', (req, res) => {
       getAllPatients: "GET /patients",
       getPatientById: "GET /patients/:id",
       createPatient: "POST /patients",
+      updatePatient: "PUT /patients/:id",
+      deletePatient: "DELETE /patients/:id",
       healthCheck: "GET /health"
     }
   });
@@ -270,7 +272,22 @@ app.post('/patients', (req, res) => {
     });
   }
 
-  const newId = req.body.id || `P${String(patients.length + 1).padStart(3, '0')}`;
+  if (req.body.id && patients.some(p => p.id.toLowerCase() === req.body.id.toLowerCase())) {
+    return res.status(409).json({
+      success: false,
+      message: `Patient with ID ${req.body.id} already exists.`
+    });
+  }
+
+  let nextNum = 1;
+  patients.forEach(p => {
+    const match = p.id.match(/\d+/);
+    if (match) {
+      const num = parseInt(match[0], 10);
+      if (num >= nextNum) nextNum = num + 1;
+    }
+  });
+  const newId = req.body.id || `P${String(nextNum).padStart(3, '0')}`;
   const newPatient = {
     id: newId,
     name,
@@ -283,6 +300,71 @@ app.post('/patients', (req, res) => {
     success: true,
     message: "Patient created successfully.",
     data: newPatient
+  });
+});
+
+// PUT /patients/:id - Update an existing patient
+app.put('/patients/:id', (req, res) => {
+  const index = patients.findIndex(p => p.id.toLowerCase() === req.params.id.toLowerCase());
+  if (index === -1) {
+    return res.status(404).json({
+      success: false,
+      message: `Patient with ID ${req.params.id} not found.`
+    });
+  }
+
+  const { name, age, contact } = req.body;
+  if (!name && age === undefined && !contact) {
+    return res.status(400).json({
+      success: false,
+      message: "Please provide at least one field to update ('name', 'age', 'contact')."
+    });
+  }
+
+  let updatedContact = patients[index].contact;
+  if (contact !== undefined) {
+    if (typeof contact === 'object' && contact !== null) {
+      updatedContact = {
+        ...patients[index].contact,
+        ...contact
+      };
+    } else if (typeof contact === 'string') {
+      updatedContact = {
+        ...patients[index].contact,
+        phone: contact
+      };
+    }
+  }
+
+  patients[index] = {
+    ...patients[index],
+    ...(name !== undefined && { name }),
+    ...(age !== undefined && { age: Number(age) }),
+    ...(contact !== undefined && { contact: updatedContact })
+  };
+
+  res.status(200).json({
+    success: true,
+    message: `Patient with ID ${req.params.id} updated successfully.`,
+    data: patients[index]
+  });
+});
+
+// DELETE /patients/:id - Delete a patient
+app.delete('/patients/:id', (req, res) => {
+  const index = patients.findIndex(p => p.id.toLowerCase() === req.params.id.toLowerCase());
+  if (index === -1) {
+    return res.status(404).json({
+      success: false,
+      message: `Patient with ID ${req.params.id} not found.`
+    });
+  }
+
+  const deletedPatient = patients.splice(index, 1)[0];
+  res.status(200).json({
+    success: true,
+    message: `Patient with ID ${req.params.id} deleted successfully.`,
+    data: deletedPatient
   });
 });
 

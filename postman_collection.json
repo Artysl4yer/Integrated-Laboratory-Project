@@ -61,6 +61,43 @@
           }
         },
         {
+          "name": "PUT /patients/:id (Update Patient)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Avery Chen Updated\",\n  \"age\": 29,\n  \"contact\": {\n    \"phone\": \"+65 9123 9999\",\n    \"email\": \"avery.updated@example.com\",\n    \"address\": \"123 Orchard Road, #08-02, Singapore 238888\"\n  }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/patients/P001",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["patients", "P001"]
+            }
+          }
+        },
+        {
+          "name": "DELETE /patients/:id (Delete Patient)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/patients/P020",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3001",
+              "path": ["patients", "P020"]
+            }
+          }
+        },
+        {
           "name": "GET /health (Patient Service Health)",
           "request": {
             "method": "GET",
@@ -127,6 +164,43 @@
               "host": ["localhost"],
               "port": "3002",
               "path": ["doctors"]
+            }
+          }
+        },
+        {
+          "name": "PUT /doctors/:id (Update Doctor)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dr. Sarah Tan\",\n  \"specialization\": \"Interventional Cardiology\",\n  \"availability\": \"Monday - Thursday, 09:00 - 17:00\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3002/doctors/D001",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["doctors", "D001"]
+            }
+          }
+        },
+        {
+          "name": "DELETE /doctors/:id (Delete Doctor)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3002/doctors/D020",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3002",
+              "path": ["doctors", "D020"]
             }
           }
         },

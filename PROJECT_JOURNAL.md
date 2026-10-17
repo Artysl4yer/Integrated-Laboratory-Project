@@ -220,3 +220,30 @@ Both containers were initiated in detached mode:
 - `doctor-service` mapped on host port `3002`
 
 Both endpoints successfully responded with HTTP 200 and expected payload data.
+
+---
+
+## Step 6 — Full CRUD Implementation (POST, PUT, DELETE)
+
+Expanded both microservices to support full CRUD operations alongside input validation, conflict detection, and automated sequential ID assignment:
+
+### Endpoint Matrix
+
+| Microservice | Method | Endpoint | Description |
+| :--- | :--- | :--- | :--- |
+| **Patient Service** | `GET` | `/patients` | Retrieve all patient records |
+| | `GET` | `/patients/:id` | Retrieve single patient by ID |
+| | `POST` | `/patients` | Create a new patient record (auto or custom ID, duplicate check) |
+| | `PUT` | `/patients/:id` | Update patient details (`name`, `age`, `contact`) |
+| | `DELETE` | `/patients/:id` | Delete patient by ID |
+| | `GET` | `/health` | Health check probe |
+| **Doctor Service** | `GET` | `/doctors` | Retrieve all doctor records |
+| | `GET` | `/doctors/:id` | Retrieve single doctor by ID |
+| | `POST` | `/doctors` | Create a new doctor record (auto or custom ID, duplicate check) |
+| | `PUT` | `/doctors/:id` | Update doctor details (`name`, `specialization`, `availability`) |
+| | `DELETE` | `/doctors/:id` | Delete doctor by ID |
+| | `GET` | `/health` | Health check probe |
+
+### Verification
+All endpoints (happy path, validation failures, 404 not found, 409 conflict) tested and verified against both services and synchronized with `postman_collection.json`.
+

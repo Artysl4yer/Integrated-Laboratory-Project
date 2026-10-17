@@ -146,6 +146,8 @@ app.get('/', (req, res) => {
       getAllDoctors: "GET /doctors",
       getDoctorById: "GET /doctors/:id",
       createDoctor: "POST /doctors",
+      updateDoctor: "PUT /doctors/:id",
+      deleteDoctor: "DELETE /doctors/:id",
       healthCheck: "GET /health"
     }
   });
@@ -190,7 +192,22 @@ app.post('/doctors', (req, res) => {
     });
   }
 
-  const newId = req.body.id || `D${String(doctors.length + 1).padStart(3, '0')}`;
+  if (req.body.id && doctors.some(d => d.id.toLowerCase() === req.body.id.toLowerCase())) {
+    return res.status(409).json({
+      success: false,
+      message: `Doctor with ID ${req.body.id} already exists.`
+    });
+  }
+
+  let nextNum = 1;
+  doctors.forEach(d => {
+    const match = d.id.match(/\d+/);
+    if (match) {
+      const num = parseInt(match[0], 10);
+      if (num >= nextNum) nextNum = num + 1;
+    }
+  });
+  const newId = req.body.id || `D${String(nextNum).padStart(3, '0')}`;
   const newDoctor = {
     id: newId,
     name,
@@ -203,6 +220,56 @@ app.post('/doctors', (req, res) => {
     success: true,
     message: "Doctor created successfully.",
     data: newDoctor
+  });
+});
+
+// PUT /doctors/:id - Update an existing doctor
+app.put('/doctors/:id', (req, res) => {
+  const index = doctors.findIndex(d => d.id.toLowerCase() === req.params.id.toLowerCase());
+  if (index === -1) {
+    return res.status(404).json({
+      success: false,
+      message: `Doctor with ID ${req.params.id} not found.`
+    });
+  }
+
+  const { name, specialization, availability } = req.body;
+  if (!name && !specialization && !availability) {
+    return res.status(400).json({
+      success: false,
+      message: "Please provide at least one field to update ('name', 'specialization', 'availability')."
+    });
+  }
+
+  doctors[index] = {
+    ...doctors[index],
+    ...(name !== undefined && { name }),
+    ...(specialization !== undefined && { specialization }),
+    ...(availability !== undefined && { availability })
+  };
+
+  res.status(200).json({
+    success: true,
+    message: `Doctor with ID ${req.params.id} updated successfully.`,
+    data: doctors[index]
+  });
+});
+
+// DELETE /doctors/:id - Delete a doctor
+app.delete('/doctors/:id', (req, res) => {
+  const index = doctors.findIndex(d => d.id.toLowerCase() === req.params.id.toLowerCase());
+  if (index === -1) {
+    return res.status(404).json({
+      success: false,
+      message: `Doctor with ID ${req.params.id} not found.`
+    });
+  }
+
+  const deletedDoctor = doctors.splice(index, 1)[0];
+  res.status(200).json({
+    success: true,
+    message: `Doctor with ID ${req.params.id} deleted successfully.`,
+    data: deletedDoctor
   });
 });
 
