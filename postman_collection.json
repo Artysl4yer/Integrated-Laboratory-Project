@@ -1,221 +1,462 @@
 {
   "info": {
     "_postman_id": "c8a4f61e-1234-4567-89ab-cdef01234567",
-    "name": "Integrated Laboratory Project - Week 1 (Group 1)",
-    "description": "Postman collection for Patient Service (port 3001) and Doctor Service (port 3002).",
+    "name": "Integrated Laboratory Project - All 8 Microservices (Weeks 1 - 4)",
+    "description": "Comprehensive Postman test collection for the 8 microservices created by Group 1: Patient (3001), Doctor (3002), Appointment (3003), Schedule (3004), Consultation (3005), Billing (3006), Notification (3007), Authentication (3008).",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Patient Service",
+      "name": "Week 1 - Patient Service (Port 3001)",
       "item": [
+        {
+          "name": "GET /health",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3001/health", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["health"] }
+          }
+        },
         {
           "name": "GET /patients (All Patients)",
           "request": {
             "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3001/patients",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3001",
-              "path": ["patients"]
-            }
+            "url": { "raw": "http://localhost:3001/patients", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["patients"] }
           }
         },
         {
-          "name": "GET /patients/:id (Patient by ID)",
+          "name": "GET /patients/:id",
           "request": {
             "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3001/patients/P001",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3001",
-              "path": ["patients", "P001"]
-            }
+            "url": { "raw": "http://localhost:3001/patients/P001", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["patients", "P001"] }
           }
         },
         {
-          "name": "POST /patients (Create Patient)",
+          "name": "POST /patients",
           "request": {
             "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": {
               "mode": "raw",
               "raw": "{\n  \"name\": \"Elena Rostova\",\n  \"age\": 31,\n  \"contact\": {\n    \"phone\": \"+65 9876 5432\",\n    \"email\": \"elena.rostova@example.com\",\n    \"address\": \"50 Robinson Rd, Singapore 068882\"\n  }\n}"
             },
-            "url": {
-              "raw": "http://localhost:3001/patients",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3001",
-              "path": ["patients"]
-            }
+            "url": { "raw": "http://localhost:3001/patients", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["patients"] }
           }
         },
         {
-          "name": "PUT /patients/:id (Update Patient)",
+          "name": "PUT /patients/:id",
           "request": {
             "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Avery Chen Updated\",\n  \"age\": 29,\n  \"contact\": {\n    \"phone\": \"+65 9123 9999\",\n    \"email\": \"avery.updated@example.com\",\n    \"address\": \"123 Orchard Road, #08-02, Singapore 238888\"\n  }\n}"
+              "raw": "{\n  \"name\": \"Avery Chen Updated\",\n  \"age\": 29\n}"
             },
-            "url": {
-              "raw": "http://localhost:3001/patients/P001",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3001",
-              "path": ["patients", "P001"]
-            }
+            "url": { "raw": "http://localhost:3001/patients/P001", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["patients", "P001"] }
           }
         },
         {
-          "name": "DELETE /patients/:id (Delete Patient)",
+          "name": "DELETE /patients/:id",
           "request": {
             "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3001/patients/P020",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3001",
-              "path": ["patients", "P020"]
-            }
-          }
-        },
-        {
-          "name": "GET /health (Patient Service Health)",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3001/health",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3001",
-              "path": ["health"]
-            }
+            "url": { "raw": "http://localhost:3001/patients/P020", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["patients", "P020"] }
           }
         }
       ]
     },
     {
-      "name": "Doctor Service",
+      "name": "Week 1 - Doctor Service (Port 3002)",
       "item": [
+        {
+          "name": "GET /health",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3002/health", "protocol": "http", "host": ["localhost"], "port": "3002", "path": ["health"] }
+          }
+        },
         {
           "name": "GET /doctors (All Doctors)",
           "request": {
             "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3002/doctors",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3002",
-              "path": ["doctors"]
-            }
+            "url": { "raw": "http://localhost:3002/doctors", "protocol": "http", "host": ["localhost"], "port": "3002", "path": ["doctors"] }
           }
         },
         {
-          "name": "GET /doctors/:id (Doctor by ID)",
+          "name": "GET /doctors/:id",
           "request": {
             "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3002/doctors/D001",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3002",
-              "path": ["doctors", "D001"]
-            }
+            "url": { "raw": "http://localhost:3002/doctors/D001", "protocol": "http", "host": ["localhost"], "port": "3002", "path": ["doctors", "D001"] }
           }
         },
         {
-          "name": "POST /doctors (Create Doctor)",
+          "name": "POST /doctors",
           "request": {
             "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": {
               "mode": "raw",
               "raw": "{\n  \"name\": \"Dr. Benjamin Koh\",\n  \"specialization\": \"Dermatology\",\n  \"availability\": \"Wednesday - Friday, 10:00 - 17:00\"\n}"
             },
-            "url": {
-              "raw": "http://localhost:3002/doctors",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3002",
-              "path": ["doctors"]
-            }
+            "url": { "raw": "http://localhost:3002/doctors", "protocol": "http", "host": ["localhost"], "port": "3002", "path": ["doctors"] }
           }
         },
         {
-          "name": "PUT /doctors/:id (Update Doctor)",
+          "name": "PUT /doctors/:id",
           "request": {
             "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Dr. Sarah Tan\",\n  \"specialization\": \"Interventional Cardiology\",\n  \"availability\": \"Monday - Thursday, 09:00 - 17:00\"\n}"
+              "raw": "{\n  \"specialization\": \"Interventional Cardiology\"\n}"
             },
-            "url": {
-              "raw": "http://localhost:3002/doctors/D001",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3002",
-              "path": ["doctors", "D001"]
-            }
+            "url": { "raw": "http://localhost:3002/doctors/D001", "protocol": "http", "host": ["localhost"], "port": "3002", "path": ["doctors", "D001"] }
           }
         },
         {
-          "name": "DELETE /doctors/:id (Delete Doctor)",
+          "name": "DELETE /doctors/:id",
           "request": {
             "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3002/doctors/D020",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3002",
-              "path": ["doctors", "D020"]
-            }
+            "url": { "raw": "http://localhost:3002/doctors/D020", "protocol": "http", "host": ["localhost"], "port": "3002", "path": ["doctors", "D020"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Week 2 - Appointment Service (Port 3003)",
+      "item": [
+        {
+          "name": "GET /health",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3003/health", "protocol": "http", "host": ["localhost"], "port": "3003", "path": ["health"] }
           }
         },
         {
-          "name": "GET /health (Doctor Service Health)",
+          "name": "GET /appointments (All Appointments)",
           "request": {
             "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3002/health",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3002",
-              "path": ["health"]
-            }
+            "url": { "raw": "http://localhost:3003/appointments", "protocol": "http", "host": ["localhost"], "port": "3003", "path": ["appointments"] }
+          }
+        },
+        {
+          "name": "GET /appointments/:id",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3003/appointments/A001", "protocol": "http", "host": ["localhost"], "port": "3003", "path": ["appointments", "A001"] }
+          }
+        },
+        {
+          "name": "GET /appointments/patient/:patientId",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3003/appointments/patient/P001", "protocol": "http", "host": ["localhost"], "port": "3003", "path": ["appointments", "patient", "P001"] }
+          }
+        },
+        {
+          "name": "POST /appointments (Create Appointment)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": \"P001\",\n  \"doctorId\": \"D002\",\n  \"date\": \"2026-11-20\",\n  \"time\": \"14:00\",\n  \"reason\": \"Routine Pediatric Follow-up\"\n}"
+            },
+            "url": { "raw": "http://localhost:3003/appointments", "protocol": "http", "host": ["localhost"], "port": "3003", "path": ["appointments"] }
+          }
+        },
+        {
+          "name": "POST /appointments (Duplicate Conflict 409)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": \"P002\",\n  \"doctorId\": \"D001\",\n  \"date\": \"2026-11-02\",\n  \"time\": \"09:30\"\n}"
+            },
+            "url": { "raw": "http://localhost:3003/appointments", "protocol": "http", "host": ["localhost"], "port": "3003", "path": ["appointments"] }
+          }
+        },
+        {
+          "name": "PUT /appointments/:id",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"COMPLETED\"\n}"
+            },
+            "url": { "raw": "http://localhost:3003/appointments/A001", "protocol": "http", "host": ["localhost"], "port": "3003", "path": ["appointments", "A001"] }
+          }
+        },
+        {
+          "name": "DELETE /appointments/:id",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "http://localhost:3003/appointments/A020", "protocol": "http", "host": ["localhost"], "port": "3003", "path": ["appointments", "A020"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Week 2 - Schedule Service (Port 3004)",
+      "item": [
+        {
+          "name": "GET /health",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3004/health", "protocol": "http", "host": ["localhost"], "port": "3004", "path": ["health"] }
+          }
+        },
+        {
+          "name": "GET /schedules (All Schedules)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3004/schedules", "protocol": "http", "host": ["localhost"], "port": "3004", "path": ["schedules"] }
+          }
+        },
+        {
+          "name": "GET /schedules?available=true",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3004/schedules?available=true", "protocol": "http", "host": ["localhost"], "port": "3004", "path": ["schedules"], "query": [{ "key": "available", "value": "true" }] }
+          }
+        },
+        {
+          "name": "GET /schedules/doctor/:doctorId",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3004/schedules/doctor/D001", "protocol": "http", "host": ["localhost"], "port": "3004", "path": ["schedules", "doctor", "D001"] }
+          }
+        },
+        {
+          "name": "POST /schedules",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"doctorId\": \"D001\",\n  \"doctorName\": \"Dr. Sarah Tan\",\n  \"specialization\": \"Cardiology\",\n  \"dayOfWeek\": \"Monday\",\n  \"date\": \"2026-11-16\",\n  \"timeSlot\": \"15:00 - 16:00\",\n  \"isAvailable\": true\n}"
+            },
+            "url": { "raw": "http://localhost:3004/schedules", "protocol": "http", "host": ["localhost"], "port": "3004", "path": ["schedules"] }
+          }
+        },
+        {
+          "name": "PUT /schedules/:id/book",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"appointmentId\": \"A005\"\n}" },
+            "url": { "raw": "http://localhost:3004/schedules/S002/book", "protocol": "http", "host": ["localhost"], "port": "3004", "path": ["schedules", "S002", "book"] }
+          }
+        },
+        {
+          "name": "PUT /schedules/:id/release",
+          "request": {
+            "method": "PUT",
+            "url": { "raw": "http://localhost:3004/schedules/S002/release", "protocol": "http", "host": ["localhost"], "port": "3004", "path": ["schedules", "S002", "release"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Week 3 - Consultation Service (Port 3005)",
+      "item": [
+        {
+          "name": "GET /health",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3005/health", "protocol": "http", "host": ["localhost"], "port": "3005", "path": ["health"] }
+          }
+        },
+        {
+          "name": "GET /consultations (All Consultations)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3005/consultations", "protocol": "http", "host": ["localhost"], "port": "3005", "path": ["consultations"] }
+          }
+        },
+        {
+          "name": "GET /consultations/:id",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3005/consultations/C001", "protocol": "http", "host": ["localhost"], "port": "3005", "path": ["consultations", "C001"] }
+          }
+        },
+        {
+          "name": "GET /consultations/appointment/:appointmentId",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3005/consultations/appointment/A001", "protocol": "http", "host": ["localhost"], "port": "3005", "path": ["consultations", "appointment", "A001"] }
+          }
+        },
+        {
+          "name": "POST /consultations (Create Consultation)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentId\": \"A021\",\n  \"patientId\": \"P001\",\n  \"doctorId\": \"D001\",\n  \"diagnosis\": \"Mild Arrhythmia\",\n  \"prescription\": \"Metoprolol 25mg daily\",\n  \"consultationNotes\": \"Patient reports intermittent palpitations during physical exertion.\"\n}"
+            },
+            "url": { "raw": "http://localhost:3005/consultations", "protocol": "http", "host": ["localhost"], "port": "3005", "path": ["consultations"] }
+          }
+        },
+        {
+          "name": "PUT /consultations/:id",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"COMPLETED\",\n  \"followUpDate\": \"2026-12-15\"\n}"
+            },
+            "url": { "raw": "http://localhost:3005/consultations/C001", "protocol": "http", "host": ["localhost"], "port": "3005", "path": ["consultations", "C001"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Week 3 - Billing Service (Port 3006)",
+      "item": [
+        {
+          "name": "GET /health",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3006/health", "protocol": "http", "host": ["localhost"], "port": "3006", "path": ["health"] }
+          }
+        },
+        {
+          "name": "GET /billing (All Bills)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3006/billing", "protocol": "http", "host": ["localhost"], "port": "3006", "path": ["billing"] }
+          }
+        },
+        {
+          "name": "GET /billing/:id",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3006/billing/B001", "protocol": "http", "host": ["localhost"], "port": "3006", "path": ["billing", "B001"] }
+          }
+        },
+        {
+          "name": "GET /billing/appointment/:appointmentId",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3006/billing/appointment/A001", "protocol": "http", "host": ["localhost"], "port": "3006", "path": ["billing", "appointment", "A001"] }
+          }
+        },
+        {
+          "name": "POST /billing (Create Invoice)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentId\": \"A021\",\n  \"patientId\": \"P001\",\n  \"amount\": 150.00,\n  \"paymentStatus\": \"PENDING\"\n}"
+            },
+            "url": { "raw": "http://localhost:3006/billing", "protocol": "http", "host": ["localhost"], "port": "3006", "path": ["billing"] }
+          }
+        },
+        {
+          "name": "PUT /billing/:id/pay (Pay Invoice)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"paymentMethod\": \"PayNow\"\n}" },
+            "url": { "raw": "http://localhost:3006/billing/B005/pay", "protocol": "http", "host": ["localhost"], "port": "3006", "path": ["billing", "B005", "pay"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Week 4 - Notification Service (Port 3007)",
+      "item": [
+        {
+          "name": "GET /health",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3007/health", "protocol": "http", "host": ["localhost"], "port": "3007", "path": ["health"] }
+          }
+        },
+        {
+          "name": "GET /notifications (All Notifications)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3007/notifications", "protocol": "http", "host": ["localhost"], "port": "3007", "path": ["notifications"] }
+          }
+        },
+        {
+          "name": "GET /notifications/patient/:patientId",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3007/notifications/patient/P001", "protocol": "http", "host": ["localhost"], "port": "3007", "path": ["notifications", "patient", "P001"] }
+          }
+        },
+        {
+          "name": "POST /notifications (Dispatch Notification)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patientId\": \"P001\",\n  \"appointmentId\": \"A001\",\n  \"notificationType\": \"SMS\",\n  \"message\": \"Your clinic appointment with Dr. Sarah Tan is confirmed for 2026-11-02 at 09:30 AM.\"\n}"
+            },
+            "url": { "raw": "http://localhost:3007/notifications", "protocol": "http", "host": ["localhost"], "port": "3007", "path": ["notifications"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Week 4 - Authentication Service (Port 3008)",
+      "item": [
+        {
+          "name": "GET /health",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3008/health", "protocol": "http", "host": ["localhost"], "port": "3008", "path": ["health"] }
+          }
+        },
+        {
+          "name": "POST /login (Patient Account Login)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"avery.chen@example.com\",\n  \"password\": \"Password123!\"\n}"
+            },
+            "url": { "raw": "http://localhost:3008/login", "protocol": "http", "host": ["localhost"], "port": "3008", "path": ["login"] }
+          }
+        },
+        {
+          "name": "POST /login (Staff Account Login)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"staff.reception@clinic.local\",\n  \"password\": \"Password123!\"\n}"
+            },
+            "url": { "raw": "http://localhost:3008/login", "protocol": "http", "host": ["localhost"], "port": "3008", "path": ["login"] }
+          }
+        },
+        {
+          "name": "POST /register (Register New Account)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"new.patient@example.com\",\n  \"password\": \"SecurePass2026!\",\n  \"name\": \"New Patient\",\n  \"role\": \"patient\"\n}"
+            },
+            "url": { "raw": "http://localhost:3008/register", "protocol": "http", "host": ["localhost"], "port": "3008", "path": ["register"] }
+          }
+        },
+        {
+          "name": "GET /users (List Users)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:3008/users", "protocol": "http", "host": ["localhost"], "port": "3008", "path": ["users"] }
           }
         }
       ]

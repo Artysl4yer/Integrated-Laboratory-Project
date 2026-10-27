@@ -1,0 +1,13 @@
+{
+  "name": "auth-service",
+  "version": "1.0.0",
+  "description": "Authentication and Role-Based Access Control Microservice for Clinic Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
