@@ -374,6 +374,28 @@ app.post('/appointments', async (req, res) => {
     });
   }
 
+  // Step 30: Check Schedule Service before booking if reachable
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 1500);
+    const schedRes = await fetch(`${SCHEDULE_SERVICE_URL}/schedules?doctorId=${encodeURIComponent(doctorId)}&date=${encodeURIComponent(date)}`, { signal: controller.signal });
+    clearTimeout(timeout);
+    if (schedRes.ok) {
+      const schedData = await schedRes.json();
+      if (schedData && Array.isArray(schedData.data) && schedData.data.length > 0) {
+        const availableSlots = schedData.data.filter(s => s.isAvailable);
+        if (availableSlots.length === 0) {
+          return res.status(409).json({
+            success: false,
+            message: `Conflict: Doctor ${doctorId} has no available schedule slots on ${date}.`
+          });
+        }
+      }
+    }
+  } catch (err) {
+    // Permissive fallback if Schedule Service is offline
+  }
+
   // Step 29: Verify referenced patient and doctor exist
   const patientCheck = await verifyExternalEntity(PATIENT_SERVICE_URL, `/patients/${patientId}`, `Patient '${patientId}'`);
   if (!patientCheck.exists) {
