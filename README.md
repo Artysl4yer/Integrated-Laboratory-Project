@@ -29,7 +29,7 @@
 | **Week 3** | Consultation Service | `3005` | `consultation-service/` | `/consultations`, `/consultations/:id` | **Completed & Verified** |
 | **Week 3** | Billing Service | `3006` | `billing-service/` | `/billing`, `/billing/:id`, `/billing/:id/pay` | **Completed & Verified** |
 | **Week 4** | Notification Service | `3007` | `notification-service/` | `/notifications`, `/notifications/:id` | **Completed & Verified** |
-| **Week 4** | Authentication Service | `3008` | `auth-service/` | `/login`, `/register`, `/profile` | **Completed & Verified** |
+| **Week 4** | Authentication Service | `3008` | `auth-service/` | `/login` (`/auth/login`), `/register` (`/auth/register`), `/profile` (`/auth/profile`), `/health` (`/auth/health`) | **Completed & Verified** |
 
 ---
 

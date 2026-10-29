@@ -154,7 +154,7 @@ app.get('/', (req, res) => {
 });
 
 // Health check endpoint (for ECS/ALB target group)
-app.get('/health', (req, res) => {
+app.get(['/health', '/doctors/health'], (req, res) => {
   res.status(200).json({ status: 'UP', service: 'doctor-service', timestamp: new Date() });
 });
 

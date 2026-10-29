@@ -410,14 +410,14 @@
       "name": "Week 4 - Authentication Service (Port 3008)",
       "item": [
         {
-          "name": "GET /health",
+          "name": "GET /health (or /auth/health)",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://localhost:3008/health", "protocol": "http", "host": ["localhost"], "port": "3008", "path": ["health"] }
+            "url": { "raw": "http://localhost:3008/auth/health", "protocol": "http", "host": ["localhost"], "port": "3008", "path": ["auth", "health"] }
           }
         },
         {
-          "name": "POST /login (Patient Account Login)",
+          "name": "POST /auth/login (Patient Account Login)",
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -425,11 +425,11 @@
               "mode": "raw",
               "raw": "{\n  \"email\": \"avery.chen@example.com\",\n  \"password\": \"Password123!\"\n}"
             },
-            "url": { "raw": "http://localhost:3008/login", "protocol": "http", "host": ["localhost"], "port": "3008", "path": ["login"] }
+            "url": { "raw": "http://localhost:3008/auth/login", "protocol": "http", "host": ["localhost"], "port": "3008", "path": ["auth", "login"] }
           }
         },
         {
-          "name": "POST /login (Staff Account Login)",
+          "name": "POST /login (Direct Root Login - Staff Account)",
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -441,7 +441,7 @@
           }
         },
         {
-          "name": "POST /register (Register New Account)",
+          "name": "POST /auth/register (Register New Account)",
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -449,14 +449,14 @@
               "mode": "raw",
               "raw": "{\n  \"email\": \"new.patient@example.com\",\n  \"password\": \"SecurePass2026!\",\n  \"name\": \"New Patient\",\n  \"role\": \"patient\"\n}"
             },
-            "url": { "raw": "http://localhost:3008/register", "protocol": "http", "host": ["localhost"], "port": "3008", "path": ["register"] }
+            "url": { "raw": "http://localhost:3008/auth/register", "protocol": "http", "host": ["localhost"], "port": "3008", "path": ["auth", "register"] }
           }
         },
         {
-          "name": "GET /users (List Users)",
+          "name": "GET /auth/users (List Users)",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://localhost:3008/users", "protocol": "http", "host": ["localhost"], "port": "3008", "path": ["users"] }
+            "url": { "raw": "http://localhost:3008/auth/users", "protocol": "http", "host": ["localhost"], "port": "3008", "path": ["auth", "users"] }
           }
         }
       ]

@@ -275,8 +275,8 @@ function authenticate(req, res, next) {
   next();
 }
 
-// Root endpoint
-app.get('/', (req, res) => {
+// Root / Auth base endpoint
+app.get(['/', '/auth'], (req, res) => {
   res.json({
     service: "Authentication Service",
     status: "Healthy",
@@ -284,18 +284,20 @@ app.get('/', (req, res) => {
     week: "Week 4",
     assigned: "Group 1",
     endpoints: {
-      login: "POST /login",
-      register: "POST /register",
-      profile: "GET /profile (Bearer Token)",
-      getAllUsers: "GET /users",
-      getUserById: "GET /users/:id",
-      healthCheck: "GET /health"
+      login: "POST /login or POST /auth/login",
+      register: "POST /register or POST /auth/register",
+      profile: "GET /profile or GET /auth/profile (Bearer Token)",
+      getAllUsers: "GET /users or GET /auth/users",
+      getUserById: "GET /users/:id or GET /auth/users/:id",
+      updateUser: "PUT /users/:id or PUT /auth/users/:id",
+      deleteUser: "DELETE /users/:id or DELETE /auth/users/:id",
+      healthCheck: "GET /health or GET /auth/health"
     }
   });
 });
 
-// Health check endpoint (for ECS/ALB target group)
-app.get('/health', (req, res) => {
+// Health check endpoint (supports both direct /health and API Gateway /auth/health)
+app.get(['/health', '/auth/health'], (req, res) => {
   res.status(200).json({
     status: 'UP',
     service: 'auth-service',
@@ -304,8 +306,8 @@ app.get('/health', (req, res) => {
   });
 });
 
-// POST /register - Register a new account
-app.post('/register', (req, res) => {
+// POST /register & /auth/register - Register a new account
+app.post(['/register', '/auth/register'], (req, res) => {
   const { email, password, name, role, patientId } = req.body;
 
   if (!email || !password || !name) {
@@ -363,8 +365,8 @@ app.post('/register', (req, res) => {
   });
 });
 
-// POST /login - Authenticate with email and password
-app.post('/login', (req, res) => {
+// POST /login & /auth/login - Authenticate with email and password
+app.post(['/login', '/auth/login'], (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -403,8 +405,8 @@ app.post('/login', (req, res) => {
   });
 });
 
-// GET /profile - Inspect authenticated profile via Bearer token
-app.get('/profile', authenticate, (req, res) => {
+// GET /profile & /auth/profile - Inspect authenticated profile via Bearer token
+app.get(['/profile', '/auth/profile'], authenticate, (req, res) => {
   const { password: _, ...safeUser } = req.user;
   res.status(200).json({
     success: true,
@@ -413,8 +415,8 @@ app.get('/profile', authenticate, (req, res) => {
   });
 });
 
-// GET /users - List all fictional user accounts (with safe projection)
-app.get('/users', (req, res) => {
+// GET /users & /auth/users - List all fictional user accounts (with safe projection)
+app.get(['/users', '/auth/users'], (req, res) => {
   const { role } = req.query;
   let result = users;
 
@@ -430,8 +432,8 @@ app.get('/users', (req, res) => {
   });
 });
 
-// GET /users/:id - Single user by ID
-app.get('/users/:id', (req, res) => {
+// GET /users/:id & /auth/users/:id - Single user by ID
+app.get(['/users/:id', '/auth/users/:id'], (req, res) => {
   const user = users.find(u => u.id.toLowerCase() === req.params.id.toLowerCase());
   if (!user) {
     return res.status(404).json({
@@ -447,8 +449,46 @@ app.get('/users/:id', (req, res) => {
   });
 });
 
-// DELETE /users/:id - Remove test user
-app.delete('/users/:id', (req, res) => {
+// PUT /users/:id & /auth/users/:id - Update user account details
+app.put(['/users/:id', '/auth/users/:id'], (req, res) => {
+  const index = users.findIndex(u => u.id.toLowerCase() === req.params.id.toLowerCase());
+  if (index === -1) {
+    return res.status(404).json({
+      success: false,
+      message: `User with ID ${req.params.id} not found.`
+    });
+  }
+
+  const { email, password, name, role, status, patientId, doctorId } = req.body;
+  if (!email && !password && !name && !role && !status && patientId === undefined && doctorId === undefined) {
+    return res.status(400).json({
+      success: false,
+      message: "Please provide at least one field to update ('email', 'password', 'name', 'role', 'status')."
+    });
+  }
+
+  users[index] = {
+    ...users[index],
+    ...(email !== undefined && { email: email.toLowerCase() }),
+    ...(password !== undefined && { password }),
+    ...(name !== undefined && { name }),
+    ...(role !== undefined && { role: role.toLowerCase() }),
+    ...(status !== undefined && { status: status.toUpperCase() }),
+    ...(patientId !== undefined && { patientId }),
+    ...(doctorId !== undefined && { doctorId }),
+    updatedAt: new Date().toISOString()
+  };
+
+  const { password: _, ...safeUser } = users[index];
+  res.status(200).json({
+    success: true,
+    message: `User ${req.params.id} updated successfully.`,
+    data: safeUser
+  });
+});
+
+// DELETE /users/:id & /auth/users/:id - Remove test user
+app.delete(['/users/:id', '/auth/users/:id'], (req, res) => {
   const index = users.findIndex(u => u.id.toLowerCase() === req.params.id.toLowerCase());
   if (index === -1) {
     return res.status(404).json({

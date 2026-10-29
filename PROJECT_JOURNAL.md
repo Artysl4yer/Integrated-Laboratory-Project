@@ -235,13 +235,13 @@ Expanded both microservices to support full CRUD operations alongside input vali
 | | `POST` | `/patients` | Create a new patient record (auto or custom ID, duplicate check) |
 | | `PUT` | `/patients/:id` | Update patient details (`name`, `age`, `contact`) |
 | | `DELETE` | `/patients/:id` | Delete patient by ID |
-| | `GET` | `/health` | Health check probe |
+| | `GET` | `/health` (`/patients/health`) | Health check probe |
 | **Doctor Service** | `GET` | `/doctors` | Retrieve all doctor records |
 | | `GET` | `/doctors/:id` | Retrieve single doctor by ID |
 | | `POST` | `/doctors` | Create a new doctor record (auto or custom ID, duplicate check) |
 | | `PUT` | `/doctors/:id` | Update doctor details (`name`, `specialization`, `availability`) |
 | | `DELETE` | `/doctors/:id` | Delete doctor by ID |
-| | `GET` | `/health` | Health check probe |
+| | `GET` | `/health` (`/doctors/health`) | Health check probe |
 
 ### Verification
 All endpoints (happy path, validation failures, 404 not found, 409 conflict) tested and verified against both services and synchronized with `postman_collection.json`.
@@ -398,7 +398,7 @@ CMD ["node", "server.js"]
 | | `POST` | `/appointments` | Create appointment (validates doctor/patient & checks conflicts) |
 | | `PUT` | `/appointments/:id` | Update appointment details |
 | | `DELETE` | `/appointments/:id` | Cancel/delete appointment |
-| | `GET` | `/health` | Health check probe |
+| | `GET` | `/health` (`/appointments/health`) | Health check probe |
 | **Schedule Service** | `GET` | `/schedules` | Retrieve doctor schedules (`?available=true`, etc.) |
 | | `GET` | `/schedules/:id` | Retrieve single schedule slot |
 | | `GET` | `/schedules/doctor/:doctorId` | Retrieve schedule for specific doctor |
@@ -407,7 +407,7 @@ CMD ["node", "server.js"]
 | | `PUT` | `/schedules/:id/book` | Book slot for an appointment |
 | | `PUT` | `/schedules/:id/release` | Release slot back to available |
 | | `DELETE` | `/schedules/:id` | Delete schedule slot |
-| | `GET` | `/health` | Health check probe |
+| | `GET` | `/health` (`/schedules/health`) | Health check probe |
 
 ### Verification Evidence
 All endpoints tested locally via automated test suites. HTTP 200, 201, 400, 404, and 409 conflict checks verified. Integrated with `postman_collection.json`.
@@ -536,7 +536,7 @@ CMD ["node", "server.js"]
 | | `POST` | `/consultations` | Record new clinical consultation |
 | | `PUT` | `/consultations/:id` | Update consultation diagnosis, notes, prescription |
 | | `DELETE` | `/consultations/:id` | Delete consultation record |
-| | `GET` | `/health` | Health check probe |
+| | `GET` | `/health` (`/consultations/health`) | Health check probe |
 | **Billing Service** | `GET` | `/billing` | Retrieve all invoices (supports `?paymentStatus=`) |
 | | `GET` | `/billing/:id` | Retrieve invoice by ID |
 | | `GET` | `/billing/appointment/:appointmentId` | Retrieve invoice by appointment |
@@ -545,7 +545,7 @@ CMD ["node", "server.js"]
 | | `PUT` | `/billing/:id` | Update billing status / amount |
 | | `PUT` | `/billing/:id/pay` | Process simulated payment (PayNow, Credit Card, etc.) |
 | | `DELETE` | `/billing/:id` | Cancel/delete invoice |
-| | `GET` | `/health` | Health check probe |
+| | `GET` | `/health` (`/billing/health`) | Health check probe |
 
 ---
 
@@ -683,14 +683,14 @@ CMD ["node", "server.js"]
 | | `POST` | `/notifications` | Record simulated notification and issue delivery confirmation |
 | | `PUT` | `/notifications/:id` | Update notification status |
 | | `DELETE` | `/notifications/:id` | Remove notification record |
-| | `GET` | `/health` | Health check probe |
-| **Authentication Service** | `POST` | `/login` | Authenticate fictional account, verify password, return Bearer token |
-| | `POST` | `/register` | Register new fictional patient or staff account |
-| | `GET` | `/profile` | Protected route: verify Bearer token and return role profile |
-| | `GET` | `/users` | List fictional accounts (with safe field projection) |
-| | `GET` | `/users/:id` | Single user account lookup |
-| | `DELETE` | `/users/:id` | Remove test user account |
-| | `GET` | `/health` | Health check probe |
+| | `GET` | `/health` (`/notifications/health`) | Health check probe |
+| **Authentication Service** | `POST` | `/login` (`/auth/login`) | Authenticate fictional account, verify password, return Bearer token |
+| | `POST` | `/register` (`/auth/register`) | Register new fictional patient or staff account |
+| | `GET` | `/profile` (`/auth/profile`) | Protected route: verify Bearer token and return role profile |
+| | `GET` | `/users` (`/auth/users`) | List fictional accounts (with safe field projection) |
+| | `GET` | `/users/:id` (`/auth/users/:id`) | Single user account lookup |
+| | `DELETE` | `/users/:id` (`/auth/users/:id`) | Remove test user account |
+| | `GET` | `/health` (`/auth/health`) | Health check probe |
 
 ### End-to-End Workflow Demonstration Status (Weeks 1 - 4)
 All 8 microservices created and containerized by Group 1 are tested and locally verified. Complete simulated appointment workflow (Patient $\rightarrow$ Doctor $\rightarrow$ Schedule $\rightarrow$ Appointment $\rightarrow$ Consultation $\rightarrow$ Billing $\rightarrow$ Notification $\rightarrow$ Authentication) is fully operational.

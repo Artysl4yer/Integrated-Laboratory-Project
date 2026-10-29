@@ -262,8 +262,8 @@ app.get('/', (req, res) => {
   });
 });
 
-// Health check endpoint (for ECS/ALB target group)
-app.get('/health', (req, res) => {
+// Health check endpoint (supports both /health and API Gateway /appointments/health)
+app.get(['/health', '/appointments/health'], (req, res) => {
   res.status(200).json({
     status: 'UP',
     service: 'appointment-service',
